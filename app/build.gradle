@@ -71,4 +71,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$support_library_version"
     implementation "com.google.android.material:material:$support_library_version"
 
+    //Mockito
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
+
 }
