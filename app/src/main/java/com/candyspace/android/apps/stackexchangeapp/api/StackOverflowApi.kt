@@ -1,6 +1,6 @@
 package com.candyspace.android.apps.stackexchangeapp.api
 
-import com.candyspace.android.apps.stackexchangeapp.BASE_URL
+import com.candyspace.android.apps.stackexchangeapp.common.BASE_URL
 import com.candyspace.android.apps.stackexchangeapp.api.model.SoResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -14,6 +14,7 @@ interface StackOverflowApi {
         @Query("inname") inmame: String,
         @Query("pagesize") pageSize: Int,
         @Query("order") order: String,
+        @Query("sort") sort: String,
         @Query("site") site: String
     ): Single<SoResponse>
 
