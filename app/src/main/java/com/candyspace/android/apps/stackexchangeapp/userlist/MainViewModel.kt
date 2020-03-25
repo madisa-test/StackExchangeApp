@@ -4,16 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.databinding.ObservableBoolean
+import androidx.lifecycle.ViewModelProvider
 import com.candyspace.android.apps.stackexchangeapp.api.model.User
+import com.candyspace.android.apps.stackexchangeapp.common.NetworkStatus
+import com.candyspace.android.apps.stackexchangeapp.common.NetworkUtils
 import com.worldremit.sousers.repository.UsersRepositoryApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(private val usersRepositoryApi: UsersRepositoryApi) : ViewModel() {
+class MainViewModel(private val usersRepositoryApi: UsersRepositoryApi, private val utils: NetworkUtils) : ViewModel() {
 
     private val usersObservable = MutableLiveData<List<User>>()
-    private val errorObservable = MutableLiveData<String>()
+    private val errorObservable = MutableLiveData<NetworkStatus>()
     private val progressObservable = ObservableBoolean(false)
 
     private val compositeDisposable = CompositeDisposable()
@@ -35,7 +38,7 @@ class MainViewModel(private val usersRepositoryApi: UsersRepositoryApi) : ViewMo
                 processLoadingStateChange(false)
                 handleSubscription(success?.equals(null) ?: true)
             }
-            .subscribe({ handleSuccess(it) }, { handleError(it.message) })
+            .subscribe({ handleSuccess(it) }, { handleError() })
         )
 
 
@@ -47,13 +50,15 @@ class MainViewModel(private val usersRepositoryApi: UsersRepositoryApi) : ViewMo
         usersObservable.value = response
     }
 
-    private fun handleError(errorMessage: String?) {
-        errorObservable.value = errorMessage
+    private fun handleError() {
+        errorObservable.value = NetworkStatus.FAIL
     }
 
     private fun handleSubscription(isEmpty: Boolean) {
-        if (isEmpty) {
-            errorObservable.value = " Data Not Available"
+        if (!utils.isOnline() && !isEmpty) {
+            errorObservable.value = NetworkStatus.FAIL
+        } else if (!utils.isOnline()) {
+            errorObservable.value = NetworkStatus.INTERNET_CONNECTION
         }
     }
 

@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), UserSelectedInterface {
 
 
         mainViewModel.getErrorObservable().observe(this,
-            Observer { Toast.makeText(this, it, Toast.LENGTH_LONG).show() })
+            Observer { Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show() })
 
     }
 
