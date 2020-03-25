@@ -7,3 +7,4 @@ const val PAGE_SIZE = 20
 const val ORDER = "asc"
 const val TIMEOUT_REQUEST = 30L
 const val CACHE_SIZE = 5 * 1024 * 1024L
+const val USER_INTENT_KEY = "userKey"

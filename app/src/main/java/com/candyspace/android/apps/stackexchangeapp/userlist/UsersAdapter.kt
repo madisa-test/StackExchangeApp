@@ -3,17 +3,19 @@ package com.candyspace.android.apps.stackexchangeapp.userlist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.candyspace.android.apps.stackexchangeapp.R
 import com.candyspace.android.apps.stackexchangeapp.api.model.User
-import java.util.*
 import kotlinx.android.synthetic.main.item_user.view.*
+import java.util.*
 
 
 class UsersAdapter(listener: UserSelectedInterface) :
     RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
     private var users: List<User>
+    companion object {
+        private var listener: UserSelectedInterface? = null
+    }
     init {
         users = ArrayList()
         UsersAdapter.listener = listener
@@ -41,15 +43,14 @@ class UsersAdapter(listener: UserSelectedInterface) :
         fun bind(user: User) {
             itemView.tv_user_name.setText(user.display_name)
             itemView.tv_reputation.setText(user.reputation.toString())
-            if (listener != null) {
-
-            }
-
+            itemView.card_view.setOnClickListener { handleUserSelected(user) }
         }
 
+       private fun handleUserSelected(user: User) {
+           listener?.onResultSelected(user)
+       }
+
     }
 
-    companion object {
-        private var listener: UserSelectedInterface? = null
-    }
+
 }

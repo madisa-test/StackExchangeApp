@@ -14,3 +14,4 @@ class NetworkUtils @Inject constructor(var application: Application) {
         return activeNetwork?.isConnected ?: false
     }
 }
+

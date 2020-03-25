@@ -1,5 +1,6 @@
 package com.candyspace.android.apps.stackexchangeapp.userlist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,7 +10,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.candyspace.android.apps.stackexchangeapp.R
+import com.candyspace.android.apps.stackexchangeapp.api.model.User
+import com.candyspace.android.apps.stackexchangeapp.common.USER_INTENT_KEY
 import com.candyspace.android.apps.stackexchangeapp.databinding.ActivityMainBinding
+import com.candyspace.android.apps.stackexchangeapp.userdetails.UserDetailsActivity
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
@@ -60,7 +64,12 @@ class MainActivity : AppCompatActivity(), UserSelectedInterface {
         }
     }
 
-    override fun onResultSelected(position: Int) {
-        TODO("Not yet implemented")
+    override fun onResultSelected(user: User) {
+        val intent = Intent(this@MainActivity,
+            UserDetailsActivity::class.java
+        )
+        intent.putExtra(USER_INTENT_KEY, user)
+
+        startActivity(intent)
     }
 }

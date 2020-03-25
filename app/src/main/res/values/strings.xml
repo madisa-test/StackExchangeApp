@@ -4,4 +4,12 @@
     <string name="enter_user_name">Please enter a user name</string>
     <string name="user_image_label">User image</string>
     <string name="search">search</string>
+    <string name="user_name_label">User Name:</string>
+    <string name="user_reputation_label">Reputation:</string>
+    <string name="gold_badges_label">Gold:</string>
+    <string name="silver_badges_label">Silver:</string>
+    <string name="bronze_badges_label">Bronze:</string>
+    <string name="user_location_label">Location:</string>
+    <string name="creation_date_label">Date:</string>
+    <string name="age_label">age:</string>
 </resources>

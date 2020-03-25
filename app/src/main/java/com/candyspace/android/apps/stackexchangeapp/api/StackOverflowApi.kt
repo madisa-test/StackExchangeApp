@@ -17,11 +17,4 @@ interface StackOverflowApi {
         @Query("sort") sort: String,
         @Query("site") site: String
     ): Single<SoResponse>
-
-    @GET(BASE_URL)
-    fun getUser(
-        @Path("ids") userId :String,
-        @Query("order") order: String,
-        @Query("site") site: String
-    ): Single<SoResponse>
 }
