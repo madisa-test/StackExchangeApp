@@ -13,9 +13,11 @@ import java.util.*
 class UsersAdapter(listener: UserSelectedInterface) :
     RecyclerView.Adapter<UsersAdapter.UsersViewHolder>() {
     private var users: List<User>
+
     companion object {
         private var listener: UserSelectedInterface? = null
     }
+
     init {
         users = ArrayList()
         UsersAdapter.listener = listener
@@ -23,7 +25,8 @@ class UsersAdapter(listener: UserSelectedInterface) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
         return UsersViewHolder(view)
     }
 
@@ -38,17 +41,17 @@ class UsersAdapter(listener: UserSelectedInterface) :
         notifyDataSetChanged()
     }
 
-   class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class UsersViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(user: User) {
-            itemView.tv_user_name.setText(user.display_name)
-            itemView.tv_reputation.setText(user.reputation.toString())
+            itemView.tv_user_name.text = user.display_name
+            itemView.tv_reputation.text = user.reputation.toString()
             itemView.card_view.setOnClickListener { handleUserSelected(user) }
         }
 
-       private fun handleUserSelected(user: User) {
-           listener?.onResultSelected(user)
-       }
+        private fun handleUserSelected(user: User) {
+            listener?.onResultSelected(user)
+        }
 
     }
 

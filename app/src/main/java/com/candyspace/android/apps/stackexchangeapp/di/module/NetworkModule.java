@@ -2,7 +2,6 @@ package com.candyspace.android.apps.stackexchangeapp.di.module;
 
 import android.app.Application;
 
-
 import com.candyspace.android.apps.stackexchangeapp.api.StackOverflowApi;
 import com.candyspace.android.apps.stackexchangeapp.di.scope.ApplicationScope;
 

@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.candyspace.android.apps.stackexchangeapp.R
 import com.candyspace.android.apps.stackexchangeapp.api.model.User
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity(), UserSelectedInterface {
     lateinit var mainViewModel: MainViewModel
 
     @Inject
-    lateinit  var usersAdapter: UsersAdapter
+    lateinit var usersAdapter: UsersAdapter
 
     private lateinit var activityMainBinding: ActivityMainBinding
 
@@ -51,8 +50,8 @@ class MainActivity : AppCompatActivity(), UserSelectedInterface {
     }
 
     private fun setupRecyclerView() {
-        rv_user_list.setAdapter(usersAdapter)
-        rv_user_list.setLayoutManager(LinearLayoutManager(this))
+        rv_user_list.adapter = usersAdapter
+        rv_user_list.layoutManager = LinearLayoutManager(this)
     }
 
     fun onClickSearchButton(view: View) {
@@ -65,7 +64,8 @@ class MainActivity : AppCompatActivity(), UserSelectedInterface {
     }
 
     override fun onResultSelected(user: User) {
-        val intent = Intent(this@MainActivity,
+        val intent = Intent(
+            this@MainActivity,
             UserDetailsActivity::class.java
         )
         intent.putExtra(USER_INTENT_KEY, user)

@@ -1,19 +1,21 @@
 package com.candyspace.android.apps.stackexchangeapp.userlist
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.ViewModelProvider
 import com.candyspace.android.apps.stackexchangeapp.api.model.User
 import com.candyspace.android.apps.stackexchangeapp.common.NetworkStatus
 import com.candyspace.android.apps.stackexchangeapp.common.NetworkUtils
-import com.worldremit.sousers.repository.UsersRepositoryApi
+import com.candyspace.android.apps.stackexchangeapp.repository.UsersRepositoryApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class MainViewModel(private val usersRepositoryApi: UsersRepositoryApi, private val utils: NetworkUtils) : ViewModel() {
+class MainViewModel(
+    private val usersRepositoryApi: UsersRepositoryApi,
+    private val utils: NetworkUtils
+) : ViewModel() {
 
     private val usersObservable = MutableLiveData<List<User>>()
     private val errorObservable = MutableLiveData<NetworkStatus>()

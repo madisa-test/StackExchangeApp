@@ -1,7 +1,8 @@
-package com.mujeeb.stackexchangeapp.di
+package com.candyspace.android.apps.stackexchangeapp.di.component
 
 import android.app.Application
 import com.candyspace.android.apps.stackexchangeapp.StackExchangeApp
+import com.candyspace.android.apps.stackexchangeapp.di.module.BuildMainActivityModule
 import com.candyspace.android.apps.stackexchangeapp.di.module.NetworkModule
 import com.candyspace.android.apps.stackexchangeapp.di.scope.ApplicationScope
 import dagger.BindsInstance
@@ -19,6 +20,7 @@ interface AppComponent {
     @Component.Builder
     interface Builder {
         fun build(): AppComponent
+
         @BindsInstance
         fun application(application: Application): Builder
     }

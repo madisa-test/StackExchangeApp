@@ -8,8 +8,9 @@ import javax.inject.Inject
 
 class NetworkUtils @Inject constructor(var application: Application) {
 
-     fun isOnline(): Boolean {
-        val connectionManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isOnline(): Boolean {
+        val connectionManager =
+            application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork: NetworkInfo? = connectionManager.activeNetworkInfo
         return activeNetwork?.isConnected ?: false
     }

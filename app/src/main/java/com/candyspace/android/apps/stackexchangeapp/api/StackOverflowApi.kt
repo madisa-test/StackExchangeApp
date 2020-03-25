@@ -1,10 +1,9 @@
 package com.candyspace.android.apps.stackexchangeapp.api
 
-import com.candyspace.android.apps.stackexchangeapp.common.BASE_URL
 import com.candyspace.android.apps.stackexchangeapp.api.model.SoResponse
+import com.candyspace.android.apps.stackexchangeapp.common.BASE_URL
 import io.reactivex.Single
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 

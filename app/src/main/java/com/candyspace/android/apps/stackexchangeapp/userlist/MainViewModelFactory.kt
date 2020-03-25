@@ -3,11 +3,13 @@ package com.candyspace.android.apps.stackexchangeapp.userlist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.candyspace.android.apps.stackexchangeapp.common.NetworkUtils
-import com.worldremit.sousers.repository.UsersRepositoryApi
+import com.candyspace.android.apps.stackexchangeapp.repository.UsersRepositoryApi
 
 
-class MainViewModelFactory(private val usersRepositoryApi: UsersRepositoryApi,
-                           private val utils: NetworkUtils) : ViewModelProvider.Factory {
+class MainViewModelFactory(
+    private val usersRepositoryApi: UsersRepositoryApi,
+    private val utils: NetworkUtils
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
