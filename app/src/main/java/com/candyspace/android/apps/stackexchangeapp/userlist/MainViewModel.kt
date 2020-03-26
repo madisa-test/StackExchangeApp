@@ -38,7 +38,7 @@ class MainViewModel(
             .doOnSubscribe { processLoadingStateChange(true) }
             .doOnEvent { success, _ ->
                 processLoadingStateChange(false)
-                handleSubscription(success?.equals(null) ?: true)
+                handleSubscription()
             }
             .subscribe({ handleSuccess(it) }, { handleError() })
         )
@@ -56,10 +56,8 @@ class MainViewModel(
         errorObservable.value = NetworkStatus.FAIL
     }
 
-    private fun handleSubscription(isEmpty: Boolean) {
-        if (!utils.isOnline() && !isEmpty) {
-            errorObservable.value = NetworkStatus.FAIL
-        } else if (!utils.isOnline()) {
+    private fun handleSubscription() {
+        if (!utils.isOnline()) {
             errorObservable.value = NetworkStatus.INTERNET_CONNECTION
         }
     }

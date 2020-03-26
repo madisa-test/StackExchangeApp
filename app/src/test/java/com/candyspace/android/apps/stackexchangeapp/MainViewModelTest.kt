@@ -48,7 +48,7 @@ class MainViewModelTest : BaseTest() {
 
         val users = TestUtils.generateUsers()
 
-        Mockito.`when`(usersRepositoryApi.fetchUsers(ArgumentMatchers.anyString()))
+        Mockito.`when`(usersRepositoryApi.fetchUsers(anyString()))
             .thenAnswer {
                 return@thenAnswer Single.just(users)
             }
@@ -66,29 +66,5 @@ class MainViewModelTest : BaseTest() {
         verify(dataObserver).onChanged(users)
 
     }
-
-
-    @Test
-    fun testOfflineAndEmptyDatabase() {
-        Mockito.`when`(usersRepositoryApi.fetchUsers(anyString()))
-            .thenAnswer {
-                return@thenAnswer Single.just(true)
-            }
-
-        Mockito.`when`(utils.isOnline())
-            .thenAnswer {
-                return@thenAnswer false
-            }
-
-
-        mainViewModel.getErrorObservable().observeForever(errorObserver)
-        mainViewModel.getData("John")
-
-
-        verify(errorObserver).onChanged(
-            NetworkStatus.FAIL
-        )
-    }
-
 
 }
